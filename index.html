@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Licoforice Anime</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Licoforice Anime</h1>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Поиск аниме...">
+            <button id="search-btn">Найти</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="filters">
+            <select id="genre-filter">
+                <option value="">Все жанры</option>
+                <option value="action">Экшен</option>
+                <option value="comedy">Комедия</option>
+                <option value="drama">Драма</option>
+                <option value="fantasy">Фэнтези</option>
+            </select>
+        </div>
+        
+        <div id="anime-container" class="anime-grid">
+            <!-- Аниме будут загружены через JS -->
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2023 Licoforice Anime Project</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
