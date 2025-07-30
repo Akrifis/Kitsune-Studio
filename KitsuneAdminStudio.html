@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Админка Kitsune Studio</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input, textarea { width: 100%; padding: 8px; }
+        button { padding: 10px 15px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Добавить новое аниме</h1>
+    
+    <form id="anime-form">
+        <div class="form-group">
+            <label for="title">Название аниме:</label>
+            <input type="text" id="title" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="poster">Ссылка на постер:</label>
+            <input type="url" id="poster" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Описание:</label>
+            <textarea id="description" rows="4" required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label>Ссылки на серии (одна на строку):</label>
+            <textarea id="episodes" rows="10" required></textarea>
+        </div>
+        
+        <button type="submit">Добавить аниме</button>
+    </form>
+    
+    <script src="script.js"></script>
+</body>
+</html>
