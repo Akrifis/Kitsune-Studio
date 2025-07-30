@@ -3,38 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Licoforice Anime</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Kitsune Studio - Аниме с озвучкой</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
-        <h1>Licoforice Anime</h1>
-        <div class="search-container">
-            <input type="text" id="search-input" placeholder="Поиск аниме...">
-            <button id="search-btn">Найти</button>
-        </div>
+        <h1>Kitsune Studio</h1>
+        <p>Аниме с профессиональной озвучкой</p>
     </header>
-
+    
     <main>
-        <div class="filters">
-            <select id="genre-filter">
-                <option value="">Все жанры</option>
-                <option value="action">Экшен</option>
-                <option value="comedy">Комедия</option>
-                <option value="drama">Драма</option>
-                <option value="fantasy">Фэнтези</option>
-            </select>
-        </div>
+        <section class="search">
+            <input type="text" placeholder="Поиск аниме...">
+        </section>
         
-        <div id="anime-container" class="anime-grid">
-            <!-- Аниме будут загружены через JS -->
-        </div>
+        <section class="anime-list">
+            <!-- Аниме будут загружаться здесь через JS -->
+            <div class="loading">Загрузка списка аниме...</div>
+        </section>
     </main>
-
+    
     <footer>
-        <p>© 2023 Licoforice Anime Project</p>
+        <p>© 2023 Kitsune Studio. Все права на озвучку принадлежат Kitsune Studio.</p>
     </footer>
-
-    <script src="app.js"></script>
+    
+    <script src="js/main.js"></script>
 </body>
 </html>
