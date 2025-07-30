@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Licoforice Anime - Просмотр</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1 id="anime-title">Название аниме</h1>
+        <a href="index.html" class="back-button">← На главную</a>
+    </header>
+
+    <main class="anime-detail">
+        <div class="player-container">
+            <video id="anime-player" controls>
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+            
+            <div class="player-controls">
+                <button id="prev-ep">← Пред.</button>
+                <select id="episode-select">
+                    <option value="1">Эпизод 1</option>
+                </select>
+                <button id="next-ep">След. →</button>
+            </div>
+        </div>
+        
+        <div class="anime-info">
+            <div class="anime-meta">
+                <img id="anime-cover" src="" alt="Обложка">
+                <div>
+                    <p><strong>Год:</strong> <span id="anime-year"></span></p>
+                    <p><strong>Жанр:</strong> <span id="anime-genre"></span></p>
+                    <p><strong>Статус:</strong> <span id="anime-status"></span></p>
+                    <p><strong>Рейтинг:</strong> <span id="anime-rating"></span></p>
+                </div>
+            </div>
+            
+            <div class="anime-description">
+                <h2>Описание</h2>
+                <p id="anime-description"></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2023 Licoforice Anime Project</p>
+    </footer>
+
+    <script>
+        // Получаем параметры из URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const animeId = urlParams.get('id');
+        
+        // Пример данных (в реальном проекте заменить на API)
+        const animeData = {
+            1: {
+                title: "Атака Титанов",
+                cover: "https://via.placeholder.com/300x420?text=Attack+on+Titan",
+                year: 2013,
+                genre: "Экшен, Драма",
+                status: "Завершён",
+                rating: "9.1/10",
+                description: "Человечество живёт в городах, окружённых огромными стенами, защищающими людей от гигантских созданий, известных как Титаны.",
+                episodes: [
+                    { title: "Титаны атакуют", video: "https://example.com/videos/aot_ep1.mp4" },
+                    { title: "Решение", video: "https://example.com/videos/aot_ep2.mp4" },
+                    { title: "Пробуждение", video: "https://example.com/videos/aot_ep3.mp4" }
+                ]
+            }
+        };
+
+        // Загружаем данные об аниме
+        document.addEventListener('DOMContentLoaded', () => {
+            const anime = animeData[animeId];
+            
+            if (anime) {
+                document.getElementById('anime-title').textContent = anime.title;
+                document.getElementById('anime-cover').src = anime.cover;
+                document.getElementById('anime-year').textContent = anime.year;
+                document.getElementById('anime-genre').textContent = anime.genre;
+                document.getElementById('anime-status').textContent = anime.status;
+                document.getElementById('anime-rating').textContent = anime.rating;
+                document.getElementById('anime-description').textContent = anime.description;
+                
+                // Заполняем список эпизодов
+                const select = document.getElementById('episode-select');
+                select.innerHTML = '';
+                anime.episodes.forEach((ep, index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.textContent = `Эпизод ${index + 1}: ${ep.title}`;
+                    select.appendChild(option);
+                });
+                
+                // Загружаем первый эпизод
+                loadEpisode(0);
+                
+                // Обработчики для переключения эпизодов
+                document.getElementById('episode-select').addEventListener('change', (e) => {
+                    loadEpisode(parseInt(e.target.value));
+                });
+                
+                document.getElementById('prev-ep').addEventListener('click', () => {
+                    const current = parseInt(select.value);
+                    if (current > 0) {
+                        select.value = current - 1;
+                        loadEpisode(current - 1);
+                    }
+                });
+                
+                document.getElementById('next-ep').addEventListener('click', () => {
+                    const current = parseInt(select.value);
+                    if (current < anime.episodes.length - 1) {
+                        select.value = current + 1;
+                        loadEpisode(current + 1);
+                    }
+                });
+            }
+        });
+        
+        function loadEpisode(index) {
+            const anime = animeData[animeId];
+            const player = document.getElementById('anime-player');
+            player.src = anime.episodes[index].video;
+            player.load();
+            player.play();
+        }
+    </script>
+</body>
+</html>
