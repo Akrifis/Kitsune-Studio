@@ -1,0 +1,30 @@
+[
+    {
+        "id": "anime-1",
+        "title": "Наруто",
+        "poster": "https://example.com/naruto-poster.jpg",
+        "description": "История о юном ниндзя Наруто Узумаки...",
+        "episodes": [
+            {
+                "number": 1,
+                "url": "https://drive.google.com/.../episode1.mp4"
+            },
+            {
+                "number": 2,
+                "url": "https://drive.google.com/.../episode2.mp4"
+            }
+        ]
+    },
+    {
+        "id": "anime-2",
+        "title": "Блич",
+        "poster": "https://example.com/bleach-poster.jpg",
+        "description": "Ичиго Куросаки получает силы синигами...",
+        "episodes": [
+            {
+                "number": 1,
+                "url": "https://drive.google.com/.../bleach1.mp4"
+            }
+        ]
+    }
+]
