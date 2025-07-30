@@ -4,40 +4,77 @@
     <meta charset="UTF-8">
     <title>Админка Kitsune Studio</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
+        body { font-family: Arial, sans-serif; margin: 20px; max-width: 800px; }
         .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; }
-        input, textarea { width: 100%; padding: 8px; }
-        button { padding: 10px 15px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea, select { width: 100%; padding: 8px; box-sizing: border-box; }
+        button { padding: 10px 15px; margin-right: 10px; cursor: pointer; }
+        .primary { background: #4CAF50; color: white; border: none; }
+        .secondary { background: #f0f0f0; border: 1px solid #ccc; }
+        .episode-upload { border: 1px dashed #ccc; padding: 15px; margin: 10px 0; }
+        .episode-list { margin-top: 20px; }
+        .episode-item { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px solid #eee; }
+        .status { margin-top: 20px; padding: 10px; }
+        .success { background: #dff0d8; color: #3c763d; }
+        .error { background: #f2dede; color: #a94442; }
+        #auth-container { margin-bottom: 20px; }
     </style>
 </head>
 <body>
-    <h1>Добавить новое аниме</h1>
+    <h1>Админ-панель Kitsune Studio</h1>
     
-    <form id="anime-form">
-        <div class="form-group">
-            <label for="title">Название аниме:</label>
-            <input type="text" id="title" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="poster">Ссылка на постер:</label>
-            <input type="url" id="poster" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="description">Описание:</label>
-            <textarea id="description" rows="4" required></textarea>
-        </div>
-        
-        <div class="form-group">
-            <label>Ссылки на серии (одна на строку):</label>
-            <textarea id="episodes" rows="10" required></textarea>
-        </div>
-        
-        <button type="submit">Добавить аниме</button>
-    </form>
+    <div id="auth-container">
+        <button id="auth-button" class="primary">Авторизоваться в Google Drive</button>
+        <span id="auth-status">Не авторизован</span>
+    </div>
     
+    <div id="admin-content" style="display: none;">
+        <h2>Добавить новое аниме</h2>
+        
+        <form id="anime-form">
+            <div class="form-group">
+                <label for="title">Название аниме:</label>
+                <input type="text" id="title" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="poster">Ссылка на постер:</label>
+                <input type="url" id="poster" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Описание:</label>
+                <textarea id="description" rows="4" required></textarea>
+            </div>
+            
+            <h3>Добавление серий</h3>
+            <div class="form-group">
+                <label for="episode-number">Номер серии:</label>
+                <input type="number" id="episode-number" min="1" value="1">
+            </div>
+            
+            <div class="form-group">
+                <label for="episode-file">Файл серии:</label>
+                <input type="file" id="episode-file" accept="video/*">
+            </div>
+            
+            <button type="button" id="add-episode" class="secondary">Добавить серию</button>
+            
+            <div class="episode-list">
+                <h4>Добавленные серии:</h4>
+                <div id="episodes-container"></div>
+            </div>
+            
+            <button type="submit" class="primary">Сохранить аниме</button>
+        </form>
+        
+        <div id="upload-status" class="status" style="display: none;"></div>
+    </div>
+    
+    <!-- Подключаем Google API клиент -->
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="auth.js"></script>
+    <script src="uploader.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
